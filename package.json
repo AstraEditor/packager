@@ -17,18 +17,18 @@
     "prepublishOnly": "npm run test && npm run build-node-prod && node src/build/nodejs/update-readme.js node",
     "postpublish": "node src/build/nodejs/update-readme.js restore"
   },
-  "author": "GarboMuffin",
-  "homepage": "https://github.com/TurboWarp/packager#readme",
+  "author": "KOSHINO",
+  "homepage": "https://github.com/AstraEditor/packager#readme",
   "keywords": [
     "scratch",
     "packager"
   ],
   "bugs": {
-    "url": "https://github.com/TurboWarp/packager/issues"
+    "url": "https://github.com/AstraEditor/packager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TurboWarp/packager.git"
+    "url": "git+https://github.com/AstraEditor/packager.git"
   },
   "license": "MPL-2.0",
   "dependencies": {
@@ -54,9 +54,9 @@
     "html-webpack-plugin": "^4.5.2",
     "jest": "^27.4.5",
     "rimraf": "^2.7.1",
-    "scratch-audio": "github:TurboWarp/scratch-audio#develop",
-    "scratch-render": "github:TurboWarp/scratch-render#develop",
-    "scratch-vm": "github:TurboWarp/scratch-vm#develop",
+    "scratch-audio": "github:AstraEditor/scratch-audio#develop",
+    "scratch-render": "github:AstraEditor/scratch-render#develop",
+    "scratch-vm": "github:AstraEditor/scratch-vm#develop",
     "style-loader": "^2.0.0",
     "svelte": "^3.44.3",
     "svelte-loader": "^3.1.2",

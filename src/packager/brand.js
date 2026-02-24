@@ -30,23 +30,23 @@ If this is set to an empty string, the link is removed.
 */
 
 module.exports = {
-  APP_NAME: 'TurboWarp Packager',
-  WEBSITE: 'https://packager.turbowarp.org/',
-  COPYRIGHT_NOTICE: `Copyright (C) 2021-2024 Thomas Weber
+  APP_NAME: 'AstraEditor Packager',
+  WEBSITE: 'https://editors.astras.top/packager',
+  COPYRIGHT_NOTICE: `Copyright (C) 2021-2024 KOSHINO
 
 The Source Code Form of this program is available under the terms of the
 Mozilla Public License, v. 2.0. You can obtain a copy of the license at
 https://www.mozilla.org/en-US/MPL/2.0/.`,
-  ACCENT_COLOR: '#ff4c4c',
-  SOURCE_CODE: 'https://github.com/TurboWarp/packager',
+  ACCENT_COLOR: '#0099ff',
+  SOURCE_CODE: 'https://github.com/AstraEditor/packager',
   FEEDBACK_PRIMARY: {
     name: 'Scratch',
-    link: 'https://scratch.mit.edu/users/GarboMuffin/#comments'
+    link: 'https://scratch.mit.edu/users/_KOSHINO_/#comments'
   },
   FEEDBACK_SECONDARY: {
     name: 'GitHub',
-    link: 'https://github.com/TurboWarp/packager/issues'
+    link: 'https://github.com/AstraEditor/packager/issues'
   },
   DONATE: '',
-  PRIVACY_POLICY: 'https://turbowarp.org/privacy.html',
+  PRIVACY_POLICY: 'https://editors.astras.top/build/privacy.html',
 };
