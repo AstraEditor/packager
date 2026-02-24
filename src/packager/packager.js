@@ -740,6 +740,7 @@ app.on('session-created', (session) => {
   session.webRequest.onBeforeSendHeaders((details, callback) => {
     callback({
       requestHeaders: {
+        ...details.requestHeaders,
         referer
       }
     });
