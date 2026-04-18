@@ -5,6 +5,7 @@ const app = new P4({
   target: document.getElementById('app')
 });
 
+document.body.style.margin = 0; //让body自带的margin消失，别问我为什么要，问就是好看
 document.body.setAttribute('p4-loaded', '');
 
 if (process.env.ENABLE_SERVICE_WORKER && 'serviceWorker' in navigator) {

@@ -192,6 +192,7 @@
     },
     "select": {
         "file": "文件",
+        "chooseFile": "选择文件",
         "id": "Scratch 官网作品 ID 或者网页链接",
         "invalidId": "无效的作品 ID",
         "invalidUrl": "无效的作品链接。请检查链接是否为直接链接，即右键打开是否会直接开始下载。",

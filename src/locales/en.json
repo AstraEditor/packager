@@ -129,6 +129,10 @@
       "string": "File",
       "developer_comment": "Radio option to upload a project from file"
     },
+    "chooseFile": {
+      "string": "Choose File",
+      "developer_comment": "Button text for file picker"
+    },
     "url": {
       "string": "Other URL",
       "developer_comment": "Radio option to choose a project from a non-Scratch URL"

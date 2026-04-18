@@ -1282,6 +1282,11 @@ cd "$(dirname "$0")"
       width: 100%;
       height: 100%;
     }
+
+    #app{
+      margin: 0;
+    }
+
     .screen {
       display: flex;
       flex-direction: column;
