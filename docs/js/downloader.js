@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["downloader"],{
 
-/***/ "./node_modules/@turbowarp/json/src/index.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@turbowarp/json/src/index.js ***!
-  \***************************************************/
+/***/ "./node_modules/.pnpm/@turbowarp+json@0.1.2/node_modules/@turbowarp/json/src/index.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/.pnpm/@turbowarp+json@0.1.2/node_modules/@turbowarp/json/src/index.js ***!
+  \********************************************************************************************/
 /*! exports provided: _parse, parse, stringify */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -361,10 +361,10 @@ const stringify = (object) => {
 
 /***/ }),
 
-/***/ "./node_modules/@turbowarp/sbdl/lib/bundle-web.cjs":
-/*!*********************************************************!*\
-  !*** ./node_modules/@turbowarp/sbdl/lib/bundle-web.cjs ***!
-  \*********************************************************/
+/***/ "./node_modules/.pnpm/@turbowarp+sbdl@7.0.0/node_modules/@turbowarp/sbdl/lib/bundle-web.cjs":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/@turbowarp+sbdl@7.0.0/node_modules/@turbowarp/sbdl/lib/bundle-web.cjs ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -397,8 +397,8 @@ const stringify = (object) => {
 
 
 
-var JSZip = __webpack_require__(/*! @turbowarp/jszip */ "./node_modules/@turbowarp/jszip/dist/jszip.min.js");
-var ExtendedJSON = __webpack_require__(/*! @turbowarp/json */ "./node_modules/@turbowarp/json/src/index.js");
+var JSZip = __webpack_require__(/*! @turbowarp/jszip */ "./node_modules/.pnpm/@turbowarp+jszip@3.12.0/node_modules/@turbowarp/jszip/dist/jszip.min.js");
+var ExtendedJSON = __webpack_require__(/*! @turbowarp/json */ "./node_modules/.pnpm/@turbowarp+json@0.1.2/node_modules/@turbowarp/json/src/index.js");
 
 function _interopNamespaceDefault(e) {
   var n = Object.create(null);
@@ -1431,7 +1431,7 @@ exports.getProjectMetadata = getProjectMetadata;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "downloadProject", function() { return downloadProject; });
 /* harmony import */ var _minify_sb3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./minify/sb3 */ "./src/packager/minify/sb3.js");
-/* harmony import */ var _turbowarp_sbdl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @turbowarp/sbdl */ "./node_modules/@turbowarp/sbdl/lib/bundle-web.cjs");
+/* harmony import */ var _turbowarp_sbdl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @turbowarp/sbdl */ "./node_modules/.pnpm/@turbowarp+sbdl@7.0.0/node_modules/@turbowarp/sbdl/lib/bundle-web.cjs");
 /* harmony import */ var _turbowarp_sbdl__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_turbowarp_sbdl__WEBPACK_IMPORTED_MODULE_1__);
 
 

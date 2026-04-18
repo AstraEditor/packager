@@ -201,10 +201,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js ***!
-  \************************************************************************/
+/***/ "./node_modules/.pnpm/file-loader@6.2.0_webpack@4.47.0/node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js":
+/*!****************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/file-loader@6.2.0_webpack@4.47.0/node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js ***!
+  \****************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -214,10 +214,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/svelte/easing/index.mjs":
-/*!**********************************************!*\
-  !*** ./node_modules/svelte/easing/index.mjs ***!
-  \**********************************************/
+/***/ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/easing/index.mjs":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/easing/index.mjs ***!
+  \*******************************************************************************/
 /*! exports provided: linear, backIn, backInOut, backOut, bounceIn, bounceInOut, bounceOut, circIn, circInOut, circOut, cubicIn, cubicInOut, cubicOut, elasticIn, elasticInOut, elasticOut, expoIn, expoInOut, expoOut, quadIn, quadInOut, quadOut, quartIn, quartInOut, quartOut, quintIn, quintInOut, quintOut, sineIn, sineInOut, sineOut */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sineIn", function() { return sineIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sineInOut", function() { return sineInOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sineOut", function() { return sineOut; });
-/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "linear", function() { return _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__["identity"]; });
 
 
@@ -404,16 +404,16 @@ function sineOut(t) {
 
 /***/ }),
 
-/***/ "./node_modules/svelte/index.mjs":
-/*!***************************************!*\
-  !*** ./node_modules/svelte/index.mjs ***!
-  \***************************************/
+/***/ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs":
+/*!************************************************************************!*\
+  !*** ./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs ***!
+  \************************************************************************/
 /*! exports provided: SvelteComponent, SvelteComponentTyped, afterUpdate, beforeUpdate, createEventDispatcher, getAllContexts, getContext, hasContext, onDestroy, onMount, setContext, tick */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./internal/index.mjs */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./internal/index.mjs */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SvelteComponent", function() { return _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__["SvelteComponentDev"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SvelteComponentTyped", function() { return _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__["SvelteComponentTyped"]; });
@@ -443,10 +443,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/svelte/internal/index.mjs":
-/*!************************************************!*\
-  !*** ./node_modules/svelte/internal/index.mjs ***!
-  \************************************************/
+/***/ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs ***!
+  \*********************************************************************************/
 /*! exports provided: HtmlTag, HtmlTagHydration, ResizeObserverSingleton, SvelteComponent, SvelteComponentDev, SvelteComponentTyped, SvelteElement, action_destroyer, add_attribute, add_classes, add_flush_callback, add_iframe_resize_listener, add_location, add_render_callback, add_styles, add_transform, afterUpdate, append, append_dev, append_empty_stylesheet, append_hydration, append_hydration_dev, append_styles, assign, attr, attr_dev, attribute_to_object, beforeUpdate, bind, binding_callbacks, blank_object, bubble, check_outros, children, claim_comment, claim_component, claim_element, claim_html_tag, claim_space, claim_svg_element, claim_text, clear_loops, comment, component_subscribe, compute_rest_props, compute_slots, construct_svelte_component, construct_svelte_component_dev, contenteditable_truthy_values, createEventDispatcher, create_animation, create_bidirectional_transition, create_component, create_in_transition, create_out_transition, create_slot, create_ssr_component, current_component, custom_event, dataset_dev, debug, destroy_block, destroy_component, destroy_each, detach, detach_after_dev, detach_before_dev, detach_between_dev, detach_dev, dirty_components, dispatch_dev, each, element, element_is, empty, end_hydrating, escape, escape_attribute_value, escape_object, exclude_internal_props, fix_and_destroy_block, fix_and_outro_and_destroy_block, fix_position, flush, flush_render_callbacks, getAllContexts, getContext, get_all_dirty_from_scope, get_binding_group_value, get_current_component, get_custom_elements_slots, get_root_for_style, get_slot_changes, get_spread_object, get_spread_update, get_store_value, globals, group_outros, handle_promise, hasContext, has_prop, head_selector, identity, init, init_binding_group, init_binding_group_dynamic, insert, insert_dev, insert_hydration, insert_hydration_dev, intros, invalid_attribute_name_character, is_client, is_crossorigin, is_empty, is_function, is_promise, is_void, listen, listen_dev, loop, loop_guard, merge_ssr_styles, missing_component, mount_component, noop, not_equal, now, null_to_empty, object_without_properties, onDestroy, onMount, once, outro_and_destroy_block, prevent_default, prop_dev, query_selector_all, raf, resize_observer_border_box, resize_observer_content_box, resize_observer_device_pixel_content_box, run, run_all, safe_not_equal, schedule_update, select_multiple_value, select_option, select_options, select_value, self, setContext, set_attributes, set_current_component, set_custom_element_data, set_custom_element_data_map, set_data, set_data_contenteditable, set_data_contenteditable_dev, set_data_dev, set_data_maybe_contenteditable, set_data_maybe_contenteditable_dev, set_dynamic_element_data, set_input_type, set_input_value, set_now, set_raf, set_store_value, set_style, set_svg_attributes, space, split_css_unit, spread, src_url_equal, start_hydrating, stop_immediate_propagation, stop_propagation, subscribe, svg_element, text, tick, time_ranges_to_array, to_number, toggle_class, transition_in, transition_out, trusted, update_await_block_branch, update_keyed_each, update_slot, update_slot_base, validate_component, validate_dynamic_element, validate_each_argument, validate_each_keys, validate_slots, validate_store, validate_void_dynamic_element, xlink_attr */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -3132,10 +3132,10 @@ function loop_guard(timeout) {
 
 /***/ }),
 
-/***/ "./node_modules/svelte/store/index.mjs":
-/*!*********************************************!*\
-  !*** ./node_modules/svelte/store/index.mjs ***!
-  \*********************************************/
+/***/ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/store/index.mjs":
+/*!******************************************************************************!*\
+  !*** ./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/store/index.mjs ***!
+  \******************************************************************************/
 /*! exports provided: get, derived, readable, readonly, writable */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -3145,7 +3145,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readable", function() { return readable; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readonly", function() { return readonly; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "writable", function() { return writable; });
-/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "get", function() { return _internal_index_mjs__WEBPACK_IMPORTED_MODULE_0__["get_store_value"]; });
 
 
@@ -3269,10 +3269,10 @@ function readonly(store) {
 
 /***/ }),
 
-/***/ "./node_modules/svelte/transition/index.mjs":
-/*!**************************************************!*\
-  !*** ./node_modules/svelte/transition/index.mjs ***!
-  \**************************************************/
+/***/ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/transition/index.mjs":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/transition/index.mjs ***!
+  \***********************************************************************************/
 /*! exports provided: blur, crossfade, draw, fade, fly, scale, slide */
 /***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
 
@@ -3285,8 +3285,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fly", function() { return fly; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scale", function() { return scale; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "slide", function() { return slide; });
-/* harmony import */ var _easing_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../easing/index.mjs */ "./node_modules/svelte/easing/index.mjs");
-/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var _easing_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../easing/index.mjs */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/easing/index.mjs");
+/* harmony import */ var _internal_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../internal/index.mjs */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 
 
 
@@ -3884,7 +3884,7 @@ module.exports = JSON.parse("{\"downloads\":{\"link\":\"{filename} letöltése (
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "locale", function() { return locale; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_", function() { return translate; });
-/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/svelte/store/index.mjs");
+/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/store/index.mjs");
 /* harmony import */ var _p4_persistent_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../p4/persistent-store */ "./src/p4/persistent-store.js");
 /* harmony import */ var _build_unstructure_translations_loader_en_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../build/unstructure-translations-loader!./en.json */ "./src/build/unstructure-translations-loader.js!./src/locales/en.json");
 var _build_unstructure_translations_loader_en_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../build/unstructure-translations-loader!./en.json */ "./src/build/unstructure-translations-loader.js!./src/locales/en.json", 1);
@@ -4165,7 +4165,7 @@ module.exports = JSON.parse("{\"fileInput\":{\"clear\":\"清除所選\",\"select
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _packager_brand__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../packager/brand */ "./src/packager/brand.js");
 /* harmony import */ var _packager_brand__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_packager_brand__WEBPACK_IMPORTED_MODULE_1__);
 /* src/p4/Button.svelte generated by Svelte v3.59.2 */
@@ -4334,8 +4334,8 @@ class Button extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompone
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs");
 /* harmony import */ var _locales_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../locales/index */ "./src/locales/index.js");
 /* src/p4/ComplexMessage.svelte generated by Svelte v3.59.2 */
 
@@ -4449,8 +4449,8 @@ class ComplexMessage extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["Svelt
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs");
 /* src/p4/DropArea.svelte generated by Svelte v3.59.2 */
 
 
@@ -4583,9 +4583,9 @@ class DropArea extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
-/* harmony import */ var svelte_transition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! svelte/transition */ "./node_modules/svelte/transition/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs");
+/* harmony import */ var svelte_transition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! svelte/transition */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/transition/index.mjs");
 /* harmony import */ var _locales___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../locales/ */ "./src/locales/index.js");
 /* src/p4/ImportProject.svelte generated by Svelte v3.59.2 */
 
@@ -4705,7 +4705,7 @@ class ImportProject extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["Svelte
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _Section_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Section.svelte */ "./src/p4/Section.svelte");
 /* harmony import */ var _Button_svelte__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button.svelte */ "./src/p4/Button.svelte");
 /* harmony import */ var _common_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/errors */ "./src/common/errors.js");
@@ -5436,7 +5436,7 @@ class Modals extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompone
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _Section_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Section.svelte */ "./src/p4/Section.svelte");
 /* src/p4/News.svelte generated by Svelte v3.59.2 */
 
@@ -5538,9 +5538,9 @@ class News extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _locales___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locales/ */ "./src/locales/index.js");
-/* harmony import */ var svelte_transition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! svelte/transition */ "./node_modules/svelte/transition/index.mjs");
+/* harmony import */ var svelte_transition__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! svelte/transition */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/transition/index.mjs");
 /* harmony import */ var _ComplexMessage_svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ComplexMessage.svelte */ "./src/p4/ComplexMessage.svelte");
 /* harmony import */ var _Section_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Section.svelte */ "./src/p4/Section.svelte");
 /* harmony import */ var _SelectProject_svelte__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SelectProject.svelte */ "./src/p4/SelectProject.svelte");
@@ -6784,7 +6784,7 @@ class P4 extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteComponent"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* src/p4/Progress.svelte generated by Svelte v3.59.2 */
 
 
@@ -6912,8 +6912,8 @@ class Progress extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs");
 /* harmony import */ var _locales___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../locales/ */ "./src/locales/index.js");
 /* harmony import */ var _reset_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reset.svg */ "./src/p4/reset.svg");
 /* src/p4/ResetButton.svelte generated by Svelte v3.59.2 */
@@ -7010,7 +7010,7 @@ class ResetButton extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCo
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _ResetButton_svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ResetButton.svelte */ "./src/p4/ResetButton.svelte");
 /* src/p4/Section.svelte generated by Svelte v3.59.2 */
 
@@ -7227,7 +7227,7 @@ class Section extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteCompon
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _locales_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../locales/index */ "./src/locales/index.js");
 /* src/p4/SelectLocale.svelte generated by Svelte v3.59.2 */
 
@@ -7396,8 +7396,8 @@ class SelectLocale extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["SvelteC
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
-/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/svelte/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! svelte */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/index.mjs");
 /* harmony import */ var _locales__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../locales */ "./src/locales/index.js");
 /* harmony import */ var _Section_svelte__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Section.svelte */ "./src/p4/Section.svelte");
 /* harmony import */ var _Button_svelte__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Button.svelte */ "./src/p4/Button.svelte");
@@ -8591,7 +8591,7 @@ class SelectProject extends svelte_internal__WEBPACK_IMPORTED_MODULE_0__["Svelte
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/svelte/internal/index.mjs");
+/* harmony import */ var svelte_internal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/internal */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/internal/index.mjs");
 /* harmony import */ var _stores__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stores */ "./src/p4/stores.js");
 /* harmony import */ var _locales__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../locales */ "./src/locales/index.js");
 /* src/p4/SelectTheme.svelte generated by Svelte v3.59.2 */
@@ -8930,7 +8930,7 @@ const importProject = ({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _P4_svelte__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./P4.svelte */ "./src/p4/P4.svelte");
-/* harmony import */ var _file_loader_name_sw_js_sw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !file-loader?name=sw.js!./sw.js */ "./node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js");
+/* harmony import */ var _file_loader_name_sw_js_sw_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !file-loader?name=sw.js!./sw.js */ "./node_modules/.pnpm/file-loader@6.2.0_webpack@4.47.0/node_modules/file-loader/dist/cjs.js?name=sw.js!./src/p4/sw.js");
 
 
 
@@ -9006,7 +9006,7 @@ const merge = (into, from) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/svelte/store/index.mjs");
+/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/store/index.mjs");
 /* harmony import */ var _merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./merge */ "./src/p4/merge.js");
 /* harmony import */ var _serialize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./serialize */ "./src/p4/serialize.js");
 
@@ -9131,7 +9131,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "progress", function() { return progress; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "currentTask", function() { return currentTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "theme", function() { return theme; });
-/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/svelte/store/index.mjs");
+/* harmony import */ var svelte_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! svelte/store */ "./node_modules/.pnpm/svelte@3.59.2/node_modules/svelte/store/index.mjs");
 
 
 const error = Object(svelte_store__WEBPACK_IMPORTED_MODULE_0__["writable"])(null);
