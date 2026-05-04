@@ -1,4 +1,12 @@
 const path = require('path');
+
+// Suppress svelte-loader warning about conditionNames (webpack 4 doesn't support it)
+const originalWarn = console.warn;
+console.warn = function (...args) {
+  if (typeof args[0] === 'string' && args[0].includes('conditionNames')) return;
+  originalWarn.apply(console, args);
+};
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -143,8 +151,7 @@ const makeWebsite = () => ({
       svelte: path.resolve('node_modules', 'svelte')
     },
     extensions: ['.mjs', '.js', '.svelte'],
-    mainFields: ['svelte', 'browser', 'module', 'main'],
-    conditionNames: ['svelte', 'browser', 'module', 'main']
+    mainFields: ['svelte', 'browser', 'module', 'main']
   },
   optimization: {
     splitChunks: {
