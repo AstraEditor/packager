@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd electron-bin
-        npm ci
+        npm install
 
     - name: Generate macOS
       if: runner.os == 'macOS'
