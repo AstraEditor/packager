@@ -143,7 +143,8 @@ const makeWebsite = () => ({
       svelte: path.resolve('node_modules', 'svelte')
     },
     extensions: ['.mjs', '.js', '.svelte'],
-    mainFields: ['svelte', 'browser', 'module', 'main']
+    mainFields: ['svelte', 'browser', 'module', 'main'],
+    conditionNames: ['svelte', 'browser', 'module', 'main']
   },
   optimization: {
     splitChunks: {
