@@ -30,15 +30,8 @@ jobs:
     - name: Build standalone
       run: npm run build-standalone-prod
 
-    - name: Create dist archive
-      run: |
-        cd dist
-        zip -r ../packager-dist.zip .
-
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        files: |
-          dist/standalone.html
-          packager-dist.zip
+        files: dist/standalone.html
         generate_release_notes: true

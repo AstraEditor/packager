@@ -2,7 +2,7 @@ const pathUtil = require('path');
 const fs = require('fs');
 const glob = require('glob');
 
-const dist = pathUtil.join(__dirname, '..', '..', 'docs');
+const dist = pathUtil.join(__dirname, '..', '..', 'dist');
 console.log(`dist: ${dist}`);
 
 const scaffoldingFiles = glob.sync('scaffolding/*.js', {
