@@ -20,7 +20,7 @@ const isStandalone = !!process.env.STANDALONE;
 const base = {
   mode: isProduction ? 'production' : 'development'
 };
-const dist = path.resolve(__dirname, 'docs');
+const dist = path.resolve(__dirname, 'dist');
 const buildId = isProduction ? require('./src/build/generate-scaffolding-build-id') : null;
 
 const getVersion = () => {
