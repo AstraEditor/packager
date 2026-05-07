@@ -75,7 +75,12 @@ const makeScaffolding = ({full}) => ({
       },
       {
         test: /\.(vert|frag|glsl)$/i,
-        use: 'raw-loader'
+        use: {
+          loader: 'raw-loader',
+          options: {
+            esModule: false
+          }
+        }
       },
       {
         test: /\.(svg|png)$/i,
