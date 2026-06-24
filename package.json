@@ -53,7 +53,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
     "jest": "^27.4.5",
-    "raw-loader": "^4.0.2",
+    "raw-loader": "^0.5.1",
     "rimraf": "^2.7.1",
     "scratch-audio": "github:AstraEditor/scratch-audio#develop",
     "scratch-render": "github:AstraEditor/scratch-render#develop",

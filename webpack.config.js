@@ -75,12 +75,7 @@ const makeScaffolding = ({full}) => ({
       },
       {
         test: /\.(vert|frag|glsl)$/i,
-        use: {
-          loader: 'raw-loader',
-          options: {
-            esModule: false
-          }
-        }
+        use: 'raw-loader'
       },
       {
         test: /\.(svg|png)$/i,
@@ -170,6 +165,10 @@ const makeWebsite = () => ({
   },
   module: {
     rules: [
+      {
+        test: /\.(vert|frag|glsl)$/i,
+        use: 'raw-loader'
+      },
       {
         test: /\.png|\.svg$/i,
         use: isStandalone ? {
