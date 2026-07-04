@@ -10968,7 +10968,7 @@ if (HTMLCanvasElement && (!canvas_proto.toBlob || !canvas_proto.toBlobHD)) {
 
 /***/ "./node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js?!./src/scaffolding/style.css":
 /*!**************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js??ref--7-1!./src/scaffolding/style.css ***!
+  !*** ./node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js??ref--8-1!./src/scaffolding/style.css ***!
   \**************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -21508,36 +21508,14 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/renderer.css":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/renderer.css ***!
-  \****************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js?esModule=false!./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/renderer.css":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader?esModule=false!./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/renderer.css ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = ".scratch-render-overlays {\n    position: absolute;\n    top: 0;\n    left: 0;\n    pointer-events: none;\n    overflow: hidden;\n}\n.scratch-render-overlays > * {\n    position: absolute;\n    top: 0;\n    left: 0;\n}\n"
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.frag":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.frag ***!
-  \***********************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "precision mediump float;\n\n#ifdef DRAW_MODE_silhouette\nuniform vec4 u_silhouetteColor;\n#else // DRAW_MODE_silhouette\n# ifdef ENABLE_color\nuniform float u_color;\n# endif // ENABLE_color\n# ifdef ENABLE_brightness\nuniform float u_brightness;\n# endif // ENABLE_brightness\n#endif // DRAW_MODE_silhouette\n\n#ifdef DRAW_MODE_colorMask\nuniform vec3 u_colorMask;\nuniform float u_colorMaskTolerance;\n#endif // DRAW_MODE_colorMask\n\n#ifdef ENABLE_fisheye\nuniform float u_fisheye;\n#endif // ENABLE_fisheye\n#ifdef ENABLE_whirl\nuniform float u_whirl;\n#endif // ENABLE_whirl\n#ifdef ENABLE_pixelate\nuniform float u_pixelate;\nuniform vec2 u_skinSize;\n#endif // ENABLE_pixelate\n#ifdef ENABLE_mosaic\nuniform float u_mosaic;\n#endif // ENABLE_mosaic\n#ifdef ENABLE_ghost\nuniform float u_ghost;\n#endif // ENABLE_ghost\n\n#ifdef DRAW_MODE_line\nvarying vec4 v_lineColor;\nvarying float v_lineThickness;\nvarying float v_lineLength;\n#endif // DRAW_MODE_line\n\n#ifdef DRAW_MODE_background\nuniform vec4 u_backgroundColor;\n#endif // DRAW_MODE_background\n\nuniform sampler2D u_skin;\n\n#ifndef DRAW_MODE_background\nvarying vec2 v_texCoord;\n#endif\n\n// Add this to divisors to prevent division by 0, which results in NaNs propagating through calculations.\n// Smaller values can cause problems on some mobile devices.\nconst float epsilon = 1e-3;\n\n#if !defined(DRAW_MODE_silhouette) && (defined(ENABLE_color))\n// Branchless color conversions based on code from:\n// http://www.chilliant.com/rgb2hsv.html by Ian Taylor\n// Based in part on work by Sam Hocevar and Emil Persson\n// See also: https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation\n\n\n// Convert an RGB color to Hue, Saturation, and Value.\n// All components of input and output are expected to be in the [0,1] range.\nvec3 convertRGB2HSV(vec3 rgb)\n{\n\t// Hue calculation has 3 cases, depending on which RGB component is largest, and one of those cases involves a \"mod\"\n\t// operation. In order to avoid that \"mod\" we split the M==R case in two: one for G<B and one for B>G. The B>G case\n\t// will be calculated in the negative and fed through abs() in the hue calculation at the end.\n\t// See also: https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma\n\tconst vec4 hueOffsets = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n\n\t// temp1.xy = sort B & G (largest first)\n\t// temp1.z = the hue offset we'll use if it turns out that R is the largest component (M==R)\n\t// temp1.w = the hue offset we'll use if it turns out that R is not the largest component (M==G or M==B)\n\tvec4 temp1 = rgb.b > rgb.g ? vec4(rgb.bg, hueOffsets.wz) : vec4(rgb.gb, hueOffsets.xy);\n\n\t// temp2.x = the largest component of RGB (\"M\" / \"Max\")\n\t// temp2.yw = the smaller components of RGB, ordered for the hue calculation (not necessarily sorted by magnitude!)\n\t// temp2.z = the hue offset we'll use in the hue calculation\n\tvec4 temp2 = rgb.r > temp1.x ? vec4(rgb.r, temp1.yzx) : vec4(temp1.xyw, rgb.r);\n\n\t// m = the smallest component of RGB (\"min\")\n\tfloat m = min(temp2.y, temp2.w);\n\n\t// Chroma = M - m\n\tfloat C = temp2.x - m;\n\n\t// Value = M\n\tfloat V = temp2.x;\n\n\treturn vec3(\n\t\tabs(temp2.z + (temp2.w - temp2.y) / (6.0 * C + epsilon)), // Hue\n\t\tC / (temp2.x + epsilon), // Saturation\n\t\tV); // Value\n}\n\nvec3 convertHue2RGB(float hue)\n{\n\tfloat r = abs(hue * 6.0 - 3.0) - 1.0;\n\tfloat g = 2.0 - abs(hue * 6.0 - 2.0);\n\tfloat b = 2.0 - abs(hue * 6.0 - 4.0);\n\treturn clamp(vec3(r, g, b), 0.0, 1.0);\n}\n\nvec3 convertHSV2RGB(vec3 hsv)\n{\n\tvec3 rgb = convertHue2RGB(hsv.x);\n\tfloat c = hsv.z * hsv.y;\n\treturn rgb * c + hsv.z - c;\n}\n#endif // !defined(DRAW_MODE_silhouette) && (defined(ENABLE_color))\n\nconst vec2 kCenter = vec2(0.5, 0.5);\n\nvoid main()\n{\n\t#if !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\n\tvec2 texcoord0 = v_texCoord;\n\n\t#ifdef ENABLE_mosaic\n\ttexcoord0 = fract(u_mosaic * texcoord0);\n\t#endif // ENABLE_mosaic\n\n\t#ifdef ENABLE_pixelate\n\t{\n\t\t// TODO: clean up \"pixel\" edges\n\t\tvec2 pixelTexelSize = u_skinSize / u_pixelate;\n\t\ttexcoord0 = (floor(texcoord0 * pixelTexelSize) + kCenter) / pixelTexelSize;\n\t}\n\t#endif // ENABLE_pixelate\n\n\t#ifdef ENABLE_whirl\n\t{\n\t\tconst float kRadius = 0.5;\n\t\tvec2 offset = texcoord0 - kCenter;\n\t\tfloat offsetMagnitude = length(offset);\n\t\tfloat whirlFactor = max(1.0 - (offsetMagnitude / kRadius), 0.0);\n\t\tfloat whirlActual = u_whirl * whirlFactor * whirlFactor;\n\t\tfloat sinWhirl = sin(whirlActual);\n\t\tfloat cosWhirl = cos(whirlActual);\n\t\tmat2 rotationMatrix = mat2(\n\t\t\tcosWhirl, -sinWhirl,\n\t\t\tsinWhirl, cosWhirl\n\t\t);\n\n\t\ttexcoord0 = rotationMatrix * offset + kCenter;\n\t}\n\t#endif // ENABLE_whirl\n\n\t#ifdef ENABLE_fisheye\n\t{\n\t\tvec2 vec = (texcoord0 - kCenter) / kCenter;\n\t\tfloat vecLength = length(vec);\n\t\tfloat r = pow(min(vecLength, 1.0), u_fisheye) * max(1.0, vecLength);\n\t\tvec2 unit = vec / vecLength;\n\n\t\ttexcoord0 = kCenter + r * unit * kCenter;\n\t}\n\t#endif // ENABLE_fisheye\n\n\tgl_FragColor = texture2D(u_skin, texcoord0);\n\n\t#if defined(ENABLE_color) || defined(ENABLE_brightness)\n\t// Divide premultiplied alpha values for proper color processing\n\t// Add epsilon to avoid dividing by 0 for fully transparent pixels\n\tgl_FragColor.rgb = clamp(gl_FragColor.rgb / (gl_FragColor.a + epsilon), 0.0, 1.0);\n\n\t#ifdef ENABLE_color\n\t{\n\t\tvec3 hsv = convertRGB2HSV(gl_FragColor.xyz);\n\n\t\t// this code forces grayscale values to be slightly saturated\n\t\t// so that some slight change of hue will be visible\n\t\tconst float minLightness = 0.11 / 2.0;\n\t\tconst float minSaturation = 0.09;\n\t\tif (hsv.z < minLightness) hsv = vec3(0.0, 1.0, minLightness);\n\t\telse if (hsv.y < minSaturation) hsv = vec3(0.0, minSaturation, hsv.z);\n\n\t\thsv.x = mod(hsv.x + u_color, 1.0);\n\t\tif (hsv.x < 0.0) hsv.x += 1.0;\n\n\t\tgl_FragColor.rgb = convertHSV2RGB(hsv);\n\t}\n\t#endif // ENABLE_color\n\n\t#ifdef ENABLE_brightness\n\tgl_FragColor.rgb = clamp(gl_FragColor.rgb + vec3(u_brightness), vec3(0), vec3(1));\n\t#endif // ENABLE_brightness\n\n\t// Re-multiply color values\n\tgl_FragColor.rgb *= gl_FragColor.a + epsilon;\n\n\t#endif // defined(ENABLE_color) || defined(ENABLE_brightness)\n\n\t#ifdef ENABLE_ghost\n\tgl_FragColor *= u_ghost;\n\t#endif // ENABLE_ghost\n\n\t#ifdef DRAW_MODE_silhouette\n\t// Discard fully transparent pixels for stencil test\n\tif (gl_FragColor.a == 0.0) {\n\t\tdiscard;\n\t}\n\t// switch to u_silhouetteColor only AFTER the alpha test\n\tgl_FragColor = u_silhouetteColor;\n\t#else // DRAW_MODE_silhouette\n\n\t#ifdef DRAW_MODE_colorMask\n\tvec3 maskDistance = abs(gl_FragColor.rgb - u_colorMask);\n\tvec3 colorMaskTolerance = vec3(u_colorMaskTolerance, u_colorMaskTolerance, u_colorMaskTolerance);\n\tif (any(greaterThan(maskDistance, colorMaskTolerance)))\n\t{\n\t\tdiscard;\n\t}\n\t#endif // DRAW_MODE_colorMask\n\t#endif // DRAW_MODE_silhouette\n\n\t#ifdef DRAW_MODE_straightAlpha\n\t// Un-premultiply alpha.\n\tgl_FragColor.rgb /= gl_FragColor.a + epsilon;\n\t#endif\n\n\t#endif // !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\n\n\t#ifdef DRAW_MODE_line\n\t// Maaaaagic antialiased-line-with-round-caps shader.\n\n\t// \"along-the-lineness\". This increases parallel to the line.\n\t// It goes from negative before the start point, to 0.5 through the start to the end, then ramps up again\n\t// past the end point.\n\tfloat d = ((v_texCoord.x - clamp(v_texCoord.x, 0.0, v_lineLength)) * 0.5) + 0.5;\n\n\t// Distance from (0.5, 0.5) to (d, the perpendicular coordinate). When we're in the middle of the line,\n\t// d will be 0.5, so the distance will be 0 at points close to the line and will grow at points further from it.\n\t// For the \"caps\", d will ramp down/up, giving us rounding.\n\t// See https://www.youtube.com/watch?v=PMltMdi1Wzg for a rough outline of the technique used to round the lines.\n\tfloat line = distance(vec2(0.5), vec2(d, v_texCoord.y)) * 2.0;\n\t// Expand out the line by its thickness.\n\tline -= ((v_lineThickness - 1.0) * 0.5);\n\t// Because \"distance to the center of the line\" decreases the closer we get to the line, but we want more opacity\n\t// the closer we are to the line, invert it.\n\tgl_FragColor = v_lineColor * clamp(1.0 - line, 0.0, 1.0);\n\t#endif // DRAW_MODE_line\n\n\t#ifdef DRAW_MODE_background\n\tgl_FragColor = u_backgroundColor;\n\t#endif\n}\n"
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.vert":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.vert ***!
-  \***********************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "precision mediump float;\n\n#ifdef DRAW_MODE_line\nuniform vec2 u_stageSize;\nattribute vec2 a_lineThicknessAndLength;\nattribute vec4 a_penPoints;\nattribute vec4 a_lineColor;\n\nvarying vec4 v_lineColor;\nvarying float v_lineThickness;\nvarying float v_lineLength;\nvarying vec4 v_penPoints;\n\n// Add this to divisors to prevent division by 0, which results in NaNs propagating through calculations.\n// Smaller values can cause problems on some mobile devices.\nconst float epsilon = 1e-3;\n#endif\n\n#if !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\nuniform mat4 u_projectionMatrix;\nuniform mat4 u_modelMatrix;\nattribute vec2 a_texCoord;\n#endif\n\nattribute vec2 a_position;\n\nvarying vec2 v_texCoord;\n\nvoid main() {\n\t#ifdef DRAW_MODE_line\n\t// Calculate a rotated (\"tight\") bounding box around the two pen points.\n\t// Yes, we're doing this 6 times (once per vertex), but on actual GPU hardware,\n\t// it's still faster than doing it in JS combined with the cost of uniformMatrix4fv.\n\n\t// Expand line bounds by sqrt(2) / 2 each side-- this ensures that all antialiased pixels\n\t// fall within the quad, even at a 45-degree diagonal\n\tvec2 position = a_position;\n\tfloat expandedRadius = (a_lineThicknessAndLength.x * 0.5) + 1.4142135623730951;\n\n\t// The X coordinate increases along the length of the line. It's 0 at the center of the origin point\n\t// and is in pixel-space (so at n pixels along the line, its value is n).\n\tv_texCoord.x = mix(0.0, a_lineThicknessAndLength.y + (expandedRadius * 2.0), a_position.x) - expandedRadius;\n\t// The Y coordinate is perpendicular to the line. It's also in pixel-space.\n\tv_texCoord.y = ((a_position.y - 0.5) * expandedRadius) + 0.5;\n\n\tposition.x *= a_lineThicknessAndLength.y + (2.0 * expandedRadius);\n\tposition.y *= 2.0 * expandedRadius;\n\n\t// 1. Center around first pen point\n\tposition -= expandedRadius;\n\n\t// 2. Rotate quad to line angle\n\tvec2 pointDiff = a_penPoints.zw;\n\t// Ensure line has a nonzero length so it's rendered properly\n\t// As long as either component is nonzero, the line length will be nonzero\n\t// If the line is zero-length, give it a bit of horizontal length\n\tpointDiff.x = (abs(pointDiff.x) < epsilon && abs(pointDiff.y) < epsilon) ? epsilon : pointDiff.x;\n\t// The `normalized` vector holds rotational values equivalent to sine/cosine\n\t// We're applying the standard rotation matrix formula to the position to rotate the quad to the line angle\n\t// pointDiff can hold large values so we must divide by u_lineLength instead of calling GLSL's normalize function:\n\t// https://asawicki.info/news_1596_watch_out_for_reduced_precision_normalizelength_in_opengl_es\n\tvec2 normalized = pointDiff / max(a_lineThicknessAndLength.y, epsilon);\n\tposition = mat2(normalized.x, normalized.y, -normalized.y, normalized.x) * position;\n\n\t// 3. Translate quad\n\tposition += a_penPoints.xy;\n\n\t// 4. Apply view transform\n\tposition *= 2.0 / u_stageSize;\n\tgl_Position = vec4(position, 0, 1);\n\n\tv_lineColor = a_lineColor;\n\tv_lineThickness = a_lineThicknessAndLength.x;\n\tv_lineLength = a_lineThicknessAndLength.y;\n\tv_penPoints = a_penPoints;\n\t#elif defined(DRAW_MODE_background)\n\tgl_Position = vec4(a_position * 2.0, 0, 1);\n\t#else\n\tgl_Position = u_projectionMatrix * u_modelMatrix * vec4(a_position, 0, 1);\n\tv_texCoord = a_texCoord;\n\t#endif\n}\n"
 
 /***/ }),
 
@@ -23615,15 +23593,15 @@ module.exports = getFonts;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/BitmapSkin.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/BitmapSkin.js":
 /*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/BitmapSkin.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/BitmapSkin.js ***!
   \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js");
+const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js");
 class BitmapSkin extends Skin {
   /**
    * Create a new Bitmap Skin.
@@ -23731,19 +23709,19 @@ module.exports = BitmapSkin;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Drawable.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Drawable.js":
 /*!*************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Drawable.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Drawable.js ***!
   \*************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const Rectangle = __webpack_require__(/*! ./Rectangle */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Rectangle.js");
-const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js");
-const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js");
-const EffectTransform = __webpack_require__(/*! ./EffectTransform */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/EffectTransform.js");
-const log = __webpack_require__(/*! ./util/log */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/log.js");
+const Rectangle = __webpack_require__(/*! ./Rectangle */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Rectangle.js");
+const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js");
+const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js");
+const EffectTransform = __webpack_require__(/*! ./EffectTransform */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/EffectTransform.js");
+const log = __webpack_require__(/*! ./util/log */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/log.js");
 
 /**
  * An internal workspace for calculating texture locations from world vectors
@@ -24465,9 +24443,9 @@ module.exports = Drawable;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/EffectTransform.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/EffectTransform.js":
 /*!********************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/EffectTransform.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/EffectTransform.js ***!
   \********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -24482,8 +24460,8 @@ const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.
 const {
   rgbToHsv,
   hsvToRgb
-} = __webpack_require__(/*! ./util/color-conversions */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/color-conversions.js");
-const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js");
+} = __webpack_require__(/*! ./util/color-conversions */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/color-conversions.js");
+const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js");
 
 /**
  * A texture coordinate is between 0 and 1. 0.5 is the center position.
@@ -24662,17 +24640,17 @@ module.exports = EffectTransform;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/PenSkin.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/PenSkin.js":
 /*!************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/PenSkin.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/PenSkin.js ***!
   \************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js");
-const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js");
-const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js");
+const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js");
+const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js");
+const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js");
 
 /**
  * Attributes to use when drawing with the pen
@@ -25131,9 +25109,9 @@ module.exports = PenSkin;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Rectangle.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Rectangle.js":
 /*!**************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Rectangle.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Rectangle.js ***!
   \**************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -25324,9 +25302,9 @@ module.exports = Rectangle;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js":
 /*!********************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js ***!
   \********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -25368,9 +25346,9 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderWebGL.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderWebGL.js":
 /*!****************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderWebGL.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderWebGL.js ***!
   \****************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -25379,18 +25357,18 @@ const EventEmitter = __webpack_require__(/*! events */ "./node_modules/.pnpm/eve
 const hull = __webpack_require__(/*! @turbowarp/ancient-hull.js */ "./node_modules/.pnpm/@turbowarp+ancient-hull.js@0.2.13/node_modules/@turbowarp/ancient-hull.js/src/hull.js");
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
 const SVGRenderer = __webpack_require__(/*! @turbowarp/scratch-svg-renderer */ "./node_modules/.pnpm/@turbowarp+scratch-svg-rend_e08bace69422740f834ef75dea21dd64/node_modules/@turbowarp/scratch-svg-renderer/src/index.js");
-const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js");
-const BitmapSkin = __webpack_require__(/*! ./BitmapSkin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/BitmapSkin.js");
-const Drawable = __webpack_require__(/*! ./Drawable */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Drawable.js");
-const Rectangle = __webpack_require__(/*! ./Rectangle */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Rectangle.js");
-const PenSkin = __webpack_require__(/*! ./PenSkin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/PenSkin.js");
-const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js");
-const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js");
-const SVGSkin = __webpack_require__(/*! ./SVGSkin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/SVGSkin.js");
-const TextBubbleSkin = __webpack_require__(/*! ./TextBubbleSkin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/TextBubbleSkin.js");
-const EffectTransform = __webpack_require__(/*! ./EffectTransform */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/EffectTransform.js");
-const CanvasMeasurementProvider = __webpack_require__(/*! ./util/canvas-measurement-provider */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/canvas-measurement-provider.js");
-const log = __webpack_require__(/*! ./util/log */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/log.js");
+const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js");
+const BitmapSkin = __webpack_require__(/*! ./BitmapSkin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/BitmapSkin.js");
+const Drawable = __webpack_require__(/*! ./Drawable */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Drawable.js");
+const Rectangle = __webpack_require__(/*! ./Rectangle */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Rectangle.js");
+const PenSkin = __webpack_require__(/*! ./PenSkin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/PenSkin.js");
+const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js");
+const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js");
+const SVGSkin = __webpack_require__(/*! ./SVGSkin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/SVGSkin.js");
+const TextBubbleSkin = __webpack_require__(/*! ./TextBubbleSkin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/TextBubbleSkin.js");
+const EffectTransform = __webpack_require__(/*! ./EffectTransform */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/EffectTransform.js");
+const CanvasMeasurementProvider = __webpack_require__(/*! ./util/canvas-measurement-provider */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/canvas-measurement-provider.js");
+const log = __webpack_require__(/*! ./util/log */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/log.js");
 const __isTouchingDrawablesPoint = twgl.v3.create();
 const __candidatesBounds = new Rectangle();
 const __fenceBounds = new Rectangle();
@@ -25461,7 +25439,7 @@ let _TextWrapper;
 const lazilyLoadTextWrapper = () => {
   if (!_TextWrapper) {
     // eslint-disable-next-line global-require
-    _TextWrapper = __webpack_require__(/*! ./util/text-wrapper */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/text-wrapper.js");
+    _TextWrapper = __webpack_require__(/*! ./util/text-wrapper */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/text-wrapper.js");
   }
   return _TextWrapper;
 };
@@ -25470,7 +25448,7 @@ const loadStyles = () => {
   if (!_stylesheet) {
     _stylesheet = document.createElement('style');
     // eslint-disable-next-line global-require
-    _stylesheet.textContent = __webpack_require__(/*! raw-loader!./renderer.css */ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/renderer.css");
+    _stylesheet.textContent = __webpack_require__(/*! raw-loader?esModule=false!./renderer.css */ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js?esModule=false!./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/renderer.css");
     _stylesheet.className = 'scratch-render-styles';
     document.head.appendChild(_stylesheet);
   }
@@ -27598,20 +27576,20 @@ module.exports = RenderWebGL;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/SVGSkin.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/SVGSkin.js":
 /*!************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/SVGSkin.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/SVGSkin.js ***!
   \************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js");
+const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js");
 const {
   loadSvgString,
   serializeSvgToString
 } = __webpack_require__(/*! @turbowarp/scratch-svg-renderer */ "./node_modules/.pnpm/@turbowarp+scratch-svg-rend_e08bace69422740f834ef75dea21dd64/node_modules/@turbowarp/scratch-svg-renderer/src/index.js");
-const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js");
+const ShaderManager = __webpack_require__(/*! ./ShaderManager */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js");
 
 /**
  * All scaled renderings of the SVG are stored in an array. The 1.0 scale of
@@ -27833,9 +27811,9 @@ module.exports = SVGSkin;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js":
 /*!******************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/ShaderManager.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/ShaderManager.js ***!
   \******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -27900,8 +27878,8 @@ class ShaderManager {
     const definesText = "".concat(defines.join('\n'), "\n");
 
     /* eslint-disable global-require */
-    const vsFullText = definesText + __webpack_require__(/*! raw-loader!./shaders/sprite.vert */ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.vert");
-    const fsFullText = definesText + __webpack_require__(/*! raw-loader!./shaders/sprite.frag */ "./node_modules/.pnpm/raw-loader@0.5.1/node_modules/raw-loader/index.js!./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/shaders/sprite.frag");
+    const vsFullText = definesText + __webpack_require__(/*! ./shaders/sprite.vert */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.vert");
+    const fsFullText = definesText + __webpack_require__(/*! ./shaders/sprite.frag */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.frag");
     /* eslint-enable global-require */
 
     let errorMessage = null;
@@ -28032,9 +28010,9 @@ module.exports = ShaderManager;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Silhouette.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Silhouette.js":
 /*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Silhouette.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Silhouette.js ***!
   \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -28306,16 +28284,16 @@ module.exports = Silhouette;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js":
 /*!*********************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js ***!
   \*********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderConstants.js");
-const Silhouette = __webpack_require__(/*! ./Silhouette */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Silhouette.js");
+const RenderConstants = __webpack_require__(/*! ./RenderConstants */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderConstants.js");
+const Silhouette = __webpack_require__(/*! ./Silhouette */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Silhouette.js");
 class Skin {
   /**
    * Create a Skin, which stores and/or generates textures for use in rendering.
@@ -28546,16 +28524,16 @@ module.exports = Skin;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/TextBubbleSkin.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/TextBubbleSkin.js":
 /*!*******************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/TextBubbleSkin.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/TextBubbleSkin.js ***!
   \*******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 const twgl = __webpack_require__(/*! twgl.js */ "./node_modules/.pnpm/twgl.js@4.4.0/node_modules/twgl.js/dist/4.x/twgl-full.js");
-const CanvasMeasurementProvider = __webpack_require__(/*! ./util/canvas-measurement-provider */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/canvas-measurement-provider.js");
-const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/Skin.js");
+const CanvasMeasurementProvider = __webpack_require__(/*! ./util/canvas-measurement-provider */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/canvas-measurement-provider.js");
+const Skin = __webpack_require__(/*! ./Skin */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/Skin.js");
 const DEFAULT_BUBBLE_STYLE = {
   maxLineWidth: 170,
   // Maximum width, in Scratch pixels, of a single line of text
@@ -28839,14 +28817,14 @@ module.exports = TextBubbleSkin;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/index.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/index.js":
 /*!**********************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/index.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/index.js ***!
   \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-const RenderWebGL = __webpack_require__(/*! ./RenderWebGL */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/RenderWebGL.js");
+const RenderWebGL = __webpack_require__(/*! ./RenderWebGL */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/RenderWebGL.js");
 
 /**
  * Export for NPM & Node.js
@@ -28856,9 +28834,31 @@ module.exports = RenderWebGL;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/canvas-measurement-provider.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.frag":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.frag ***!
+  \*********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "precision mediump float;\n\n#ifdef DRAW_MODE_silhouette\nuniform vec4 u_silhouetteColor;\n#else // DRAW_MODE_silhouette\n# ifdef ENABLE_color\nuniform float u_color;\n# endif // ENABLE_color\n# ifdef ENABLE_brightness\nuniform float u_brightness;\n# endif // ENABLE_brightness\n#endif // DRAW_MODE_silhouette\n\n#ifdef DRAW_MODE_colorMask\nuniform vec3 u_colorMask;\nuniform float u_colorMaskTolerance;\n#endif // DRAW_MODE_colorMask\n\n#ifdef ENABLE_fisheye\nuniform float u_fisheye;\n#endif // ENABLE_fisheye\n#ifdef ENABLE_whirl\nuniform float u_whirl;\n#endif // ENABLE_whirl\n#ifdef ENABLE_pixelate\nuniform float u_pixelate;\nuniform vec2 u_skinSize;\n#endif // ENABLE_pixelate\n#ifdef ENABLE_mosaic\nuniform float u_mosaic;\n#endif // ENABLE_mosaic\n#ifdef ENABLE_ghost\nuniform float u_ghost;\n#endif // ENABLE_ghost\n\n#ifdef DRAW_MODE_line\nvarying vec4 v_lineColor;\nvarying float v_lineThickness;\nvarying float v_lineLength;\n#endif // DRAW_MODE_line\n\n#ifdef DRAW_MODE_background\nuniform vec4 u_backgroundColor;\n#endif // DRAW_MODE_background\n\nuniform sampler2D u_skin;\n\n#ifndef DRAW_MODE_background\nvarying vec2 v_texCoord;\n#endif\n\n// Add this to divisors to prevent division by 0, which results in NaNs propagating through calculations.\n// Smaller values can cause problems on some mobile devices.\nconst float epsilon = 1e-3;\n\n#if !defined(DRAW_MODE_silhouette) && (defined(ENABLE_color))\n// Branchless color conversions based on code from:\n// http://www.chilliant.com/rgb2hsv.html by Ian Taylor\n// Based in part on work by Sam Hocevar and Emil Persson\n// See also: https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation\n\n\n// Convert an RGB color to Hue, Saturation, and Value.\n// All components of input and output are expected to be in the [0,1] range.\nvec3 convertRGB2HSV(vec3 rgb)\n{\n\t// Hue calculation has 3 cases, depending on which RGB component is largest, and one of those cases involves a \"mod\"\n\t// operation. In order to avoid that \"mod\" we split the M==R case in two: one for G<B and one for B>G. The B>G case\n\t// will be calculated in the negative and fed through abs() in the hue calculation at the end.\n\t// See also: https://en.wikipedia.org/wiki/HSL_and_HSV#Hue_and_chroma\n\tconst vec4 hueOffsets = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n\n\t// temp1.xy = sort B & G (largest first)\n\t// temp1.z = the hue offset we'll use if it turns out that R is the largest component (M==R)\n\t// temp1.w = the hue offset we'll use if it turns out that R is not the largest component (M==G or M==B)\n\tvec4 temp1 = rgb.b > rgb.g ? vec4(rgb.bg, hueOffsets.wz) : vec4(rgb.gb, hueOffsets.xy);\n\n\t// temp2.x = the largest component of RGB (\"M\" / \"Max\")\n\t// temp2.yw = the smaller components of RGB, ordered for the hue calculation (not necessarily sorted by magnitude!)\n\t// temp2.z = the hue offset we'll use in the hue calculation\n\tvec4 temp2 = rgb.r > temp1.x ? vec4(rgb.r, temp1.yzx) : vec4(temp1.xyw, rgb.r);\n\n\t// m = the smallest component of RGB (\"min\")\n\tfloat m = min(temp2.y, temp2.w);\n\n\t// Chroma = M - m\n\tfloat C = temp2.x - m;\n\n\t// Value = M\n\tfloat V = temp2.x;\n\n\treturn vec3(\n\t\tabs(temp2.z + (temp2.w - temp2.y) / (6.0 * C + epsilon)), // Hue\n\t\tC / (temp2.x + epsilon), // Saturation\n\t\tV); // Value\n}\n\nvec3 convertHue2RGB(float hue)\n{\n\tfloat r = abs(hue * 6.0 - 3.0) - 1.0;\n\tfloat g = 2.0 - abs(hue * 6.0 - 2.0);\n\tfloat b = 2.0 - abs(hue * 6.0 - 4.0);\n\treturn clamp(vec3(r, g, b), 0.0, 1.0);\n}\n\nvec3 convertHSV2RGB(vec3 hsv)\n{\n\tvec3 rgb = convertHue2RGB(hsv.x);\n\tfloat c = hsv.z * hsv.y;\n\treturn rgb * c + hsv.z - c;\n}\n#endif // !defined(DRAW_MODE_silhouette) && (defined(ENABLE_color))\n\nconst vec2 kCenter = vec2(0.5, 0.5);\n\nvoid main()\n{\n\t#if !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\n\tvec2 texcoord0 = v_texCoord;\n\n\t#ifdef ENABLE_mosaic\n\ttexcoord0 = fract(u_mosaic * texcoord0);\n\t#endif // ENABLE_mosaic\n\n\t#ifdef ENABLE_pixelate\n\t{\n\t\t// TODO: clean up \"pixel\" edges\n\t\tvec2 pixelTexelSize = u_skinSize / u_pixelate;\n\t\ttexcoord0 = (floor(texcoord0 * pixelTexelSize) + kCenter) / pixelTexelSize;\n\t}\n\t#endif // ENABLE_pixelate\n\n\t#ifdef ENABLE_whirl\n\t{\n\t\tconst float kRadius = 0.5;\n\t\tvec2 offset = texcoord0 - kCenter;\n\t\tfloat offsetMagnitude = length(offset);\n\t\tfloat whirlFactor = max(1.0 - (offsetMagnitude / kRadius), 0.0);\n\t\tfloat whirlActual = u_whirl * whirlFactor * whirlFactor;\n\t\tfloat sinWhirl = sin(whirlActual);\n\t\tfloat cosWhirl = cos(whirlActual);\n\t\tmat2 rotationMatrix = mat2(\n\t\t\tcosWhirl, -sinWhirl,\n\t\t\tsinWhirl, cosWhirl\n\t\t);\n\n\t\ttexcoord0 = rotationMatrix * offset + kCenter;\n\t}\n\t#endif // ENABLE_whirl\n\n\t#ifdef ENABLE_fisheye\n\t{\n\t\tvec2 vec = (texcoord0 - kCenter) / kCenter;\n\t\tfloat vecLength = length(vec);\n\t\tfloat r = pow(min(vecLength, 1.0), u_fisheye) * max(1.0, vecLength);\n\t\tvec2 unit = vec / vecLength;\n\n\t\ttexcoord0 = kCenter + r * unit * kCenter;\n\t}\n\t#endif // ENABLE_fisheye\n\n\tgl_FragColor = texture2D(u_skin, texcoord0);\n\n\t#if defined(ENABLE_color) || defined(ENABLE_brightness)\n\t// Divide premultiplied alpha values for proper color processing\n\t// Add epsilon to avoid dividing by 0 for fully transparent pixels\n\tgl_FragColor.rgb = clamp(gl_FragColor.rgb / (gl_FragColor.a + epsilon), 0.0, 1.0);\n\n\t#ifdef ENABLE_color\n\t{\n\t\tvec3 hsv = convertRGB2HSV(gl_FragColor.xyz);\n\n\t\t// this code forces grayscale values to be slightly saturated\n\t\t// so that some slight change of hue will be visible\n\t\tconst float minLightness = 0.11 / 2.0;\n\t\tconst float minSaturation = 0.09;\n\t\tif (hsv.z < minLightness) hsv = vec3(0.0, 1.0, minLightness);\n\t\telse if (hsv.y < minSaturation) hsv = vec3(0.0, minSaturation, hsv.z);\n\n\t\thsv.x = mod(hsv.x + u_color, 1.0);\n\t\tif (hsv.x < 0.0) hsv.x += 1.0;\n\n\t\tgl_FragColor.rgb = convertHSV2RGB(hsv);\n\t}\n\t#endif // ENABLE_color\n\n\t#ifdef ENABLE_brightness\n\tgl_FragColor.rgb = clamp(gl_FragColor.rgb + vec3(u_brightness), vec3(0), vec3(1));\n\t#endif // ENABLE_brightness\n\n\t// Re-multiply color values\n\tgl_FragColor.rgb *= gl_FragColor.a + epsilon;\n\n\t#endif // defined(ENABLE_color) || defined(ENABLE_brightness)\n\n\t#ifdef ENABLE_ghost\n\tgl_FragColor *= u_ghost;\n\t#endif // ENABLE_ghost\n\n\t#ifdef DRAW_MODE_silhouette\n\t// Discard fully transparent pixels for stencil test\n\tif (gl_FragColor.a == 0.0) {\n\t\tdiscard;\n\t}\n\t// switch to u_silhouetteColor only AFTER the alpha test\n\tgl_FragColor = u_silhouetteColor;\n\t#else // DRAW_MODE_silhouette\n\n\t#ifdef DRAW_MODE_colorMask\n\tvec3 maskDistance = abs(gl_FragColor.rgb - u_colorMask);\n\tvec3 colorMaskTolerance = vec3(u_colorMaskTolerance, u_colorMaskTolerance, u_colorMaskTolerance);\n\tif (any(greaterThan(maskDistance, colorMaskTolerance)))\n\t{\n\t\tdiscard;\n\t}\n\t#endif // DRAW_MODE_colorMask\n\t#endif // DRAW_MODE_silhouette\n\n\t#ifdef DRAW_MODE_straightAlpha\n\t// Un-premultiply alpha.\n\tgl_FragColor.rgb /= gl_FragColor.a + epsilon;\n\t#endif\n\n\t#endif // !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\n\n\t#ifdef DRAW_MODE_line\n\t// Maaaaagic antialiased-line-with-round-caps shader.\n\n\t// \"along-the-lineness\". This increases parallel to the line.\n\t// It goes from negative before the start point, to 0.5 through the start to the end, then ramps up again\n\t// past the end point.\n\tfloat d = ((v_texCoord.x - clamp(v_texCoord.x, 0.0, v_lineLength)) * 0.5) + 0.5;\n\n\t// Distance from (0.5, 0.5) to (d, the perpendicular coordinate). When we're in the middle of the line,\n\t// d will be 0.5, so the distance will be 0 at points close to the line and will grow at points further from it.\n\t// For the \"caps\", d will ramp down/up, giving us rounding.\n\t// See https://www.youtube.com/watch?v=PMltMdi1Wzg for a rough outline of the technique used to round the lines.\n\tfloat line = distance(vec2(0.5), vec2(d, v_texCoord.y)) * 2.0;\n\t// Expand out the line by its thickness.\n\tline -= ((v_lineThickness - 1.0) * 0.5);\n\t// Because \"distance to the center of the line\" decreases the closer we get to the line, but we want more opacity\n\t// the closer we are to the line, invert it.\n\tgl_FragColor = v_lineColor * clamp(1.0 - line, 0.0, 1.0);\n\t#endif // DRAW_MODE_line\n\n\t#ifdef DRAW_MODE_background\n\tgl_FragColor = u_backgroundColor;\n\t#endif\n}\n"
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.vert":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/shaders/sprite.vert ***!
+  \*********************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "precision mediump float;\n\n#ifdef DRAW_MODE_line\nuniform vec2 u_stageSize;\nattribute vec2 a_lineThicknessAndLength;\nattribute vec4 a_penPoints;\nattribute vec4 a_lineColor;\n\nvarying vec4 v_lineColor;\nvarying float v_lineThickness;\nvarying float v_lineLength;\nvarying vec4 v_penPoints;\n\n// Add this to divisors to prevent division by 0, which results in NaNs propagating through calculations.\n// Smaller values can cause problems on some mobile devices.\nconst float epsilon = 1e-3;\n#endif\n\n#if !(defined(DRAW_MODE_line) || defined(DRAW_MODE_background))\nuniform mat4 u_projectionMatrix;\nuniform mat4 u_modelMatrix;\nattribute vec2 a_texCoord;\n#endif\n\nattribute vec2 a_position;\n\nvarying vec2 v_texCoord;\n\nvoid main() {\n\t#ifdef DRAW_MODE_line\n\t// Calculate a rotated (\"tight\") bounding box around the two pen points.\n\t// Yes, we're doing this 6 times (once per vertex), but on actual GPU hardware,\n\t// it's still faster than doing it in JS combined with the cost of uniformMatrix4fv.\n\n\t// Expand line bounds by sqrt(2) / 2 each side-- this ensures that all antialiased pixels\n\t// fall within the quad, even at a 45-degree diagonal\n\tvec2 position = a_position;\n\tfloat expandedRadius = (a_lineThicknessAndLength.x * 0.5) + 1.4142135623730951;\n\n\t// The X coordinate increases along the length of the line. It's 0 at the center of the origin point\n\t// and is in pixel-space (so at n pixels along the line, its value is n).\n\tv_texCoord.x = mix(0.0, a_lineThicknessAndLength.y + (expandedRadius * 2.0), a_position.x) - expandedRadius;\n\t// The Y coordinate is perpendicular to the line. It's also in pixel-space.\n\tv_texCoord.y = ((a_position.y - 0.5) * expandedRadius) + 0.5;\n\n\tposition.x *= a_lineThicknessAndLength.y + (2.0 * expandedRadius);\n\tposition.y *= 2.0 * expandedRadius;\n\n\t// 1. Center around first pen point\n\tposition -= expandedRadius;\n\n\t// 2. Rotate quad to line angle\n\tvec2 pointDiff = a_penPoints.zw;\n\t// Ensure line has a nonzero length so it's rendered properly\n\t// As long as either component is nonzero, the line length will be nonzero\n\t// If the line is zero-length, give it a bit of horizontal length\n\tpointDiff.x = (abs(pointDiff.x) < epsilon && abs(pointDiff.y) < epsilon) ? epsilon : pointDiff.x;\n\t// The `normalized` vector holds rotational values equivalent to sine/cosine\n\t// We're applying the standard rotation matrix formula to the position to rotate the quad to the line angle\n\t// pointDiff can hold large values so we must divide by u_lineLength instead of calling GLSL's normalize function:\n\t// https://asawicki.info/news_1596_watch_out_for_reduced_precision_normalizelength_in_opengl_es\n\tvec2 normalized = pointDiff / max(a_lineThicknessAndLength.y, epsilon);\n\tposition = mat2(normalized.x, normalized.y, -normalized.y, normalized.x) * position;\n\n\t// 3. Translate quad\n\tposition += a_penPoints.xy;\n\n\t// 4. Apply view transform\n\tposition *= 2.0 / u_stageSize;\n\tgl_Position = vec4(position, 0, 1);\n\n\tv_lineColor = a_lineColor;\n\tv_lineThickness = a_lineThicknessAndLength.x;\n\tv_lineLength = a_lineThicknessAndLength.y;\n\tv_penPoints = a_penPoints;\n\t#elif defined(DRAW_MODE_background)\n\tgl_Position = vec4(a_position * 2.0, 0, 1);\n\t#else\n\tgl_Position = u_projectionMatrix * u_modelMatrix * vec4(a_position, 0, 1);\n\tv_texCoord = a_texCoord;\n\t#endif\n}\n"
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/canvas-measurement-provider.js":
 /*!*************************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/canvas-measurement-provider.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/canvas-measurement-provider.js ***!
   \*************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -28908,9 +28908,9 @@ module.exports = CanvasMeasurementProvider;
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/color-conversions.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/color-conversions.js":
 /*!***************************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/color-conversions.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/color-conversions.js ***!
   \***************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -29033,9 +29033,9 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/log.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/log.js":
 /*!*************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/log.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/log.js ***!
   \*************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -29046,9 +29046,9 @@ module.exports = nanolog('scratch-render');
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/text-wrapper.js":
+/***/ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/text-wrapper.js":
 /*!**********************************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/util/text-wrapper.js ***!
+  !*** ./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/util/text-wrapper.js ***!
   \**********************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -89390,7 +89390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var scratch_vm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! scratch-vm */ "./node_modules/.pnpm/scratch-vm@https+++codeload_5ad84b5aa82a0a1ba5fad189a015dfd2/node_modules/scratch-vm/src/index.js");
 /* harmony import */ var scratch_vm__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(scratch_vm__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "VM", function() { return scratch_vm__WEBPACK_IMPORTED_MODULE_0___default.a; });
-/* harmony import */ var scratch_render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! scratch-render */ "./node_modules/.pnpm/scratch-render@https+++code_e689990678257c070c5308305ed7bde3/node_modules/scratch-render/src/index.js");
+/* harmony import */ var scratch_render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! scratch-render */ "./node_modules/.pnpm/scratch-render@https+++code_04d84e625100e6f7d75566cea442f4f4/node_modules/scratch-render/src/index.js");
 /* harmony import */ var scratch_render__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(scratch_render__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "Renderer", function() { return scratch_render__WEBPACK_IMPORTED_MODULE_1___default.a; });
 /* harmony import */ var _turbowarp_scratch_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @turbowarp/scratch-storage */ "./node_modules/.pnpm/@turbowarp+scratch-storage@0.0.202505311821_webpack@4.47.0/node_modules/@turbowarp/scratch-storage/dist/web/scratch-storage.js");
@@ -89688,7 +89688,7 @@ class StorageWithProgress extends _scratch_libraries__WEBPACK_IMPORTED_MODULE_0_
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_pnpm_style_loader_2_0_0_webpack_4_47_0_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/.pnpm/style-loader@2.0.0_webpack@4.47.0/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/.pnpm/style-loader@2.0.0_webpack@4.47.0/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_pnpm_style_loader_2_0_0_webpack_4_47_0_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_pnpm_style_loader_2_0_0_webpack_4_47_0_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_7_1_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js??ref--7-1!./style.css */ "./node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js?!./src/scaffolding/style.css");
+/* harmony import */ var _node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_8_1_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js??ref--8-1!./style.css */ "./node_modules/.pnpm/css-loader@5.2.7_webpack@4.47.0/node_modules/css-loader/dist/cjs.js?!./src/scaffolding/style.css");
 
             
 
@@ -89700,11 +89700,11 @@ options.insert = (styleElement) => {
               };
 options.singleton = false;
 
-var update = _node_modules_pnpm_style_loader_2_0_0_webpack_4_47_0_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_7_1_style_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _node_modules_pnpm_style_loader_2_0_0_webpack_4_47_0_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_8_1_style_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_7_1_style_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ __webpack_exports__["default"] = (_node_modules_pnpm_css_loader_5_2_7_webpack_4_47_0_node_modules_css_loader_dist_cjs_js_ref_8_1_style_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

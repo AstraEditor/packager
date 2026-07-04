@@ -1,2 +1,4 @@
 shamefullyHoist: true
 blockExoticSubdeps: false
+allowBuilds:
+  core-js: true

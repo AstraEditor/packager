@@ -688,7 +688,7 @@ var LEGACY_ALIASES = {
 };
 
 var bind = __webpack_require__(/*! function-bind */ "./node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind/index.js");
-var hasOwn = __webpack_require__(/*! hasown */ "./node_modules/.pnpm/hasown@2.0.3/node_modules/hasown/index.js");
+var hasOwn = __webpack_require__(/*! hasown */ "./node_modules/.pnpm/hasown@2.0.4/node_modules/hasown/index.js");
 var $concat = bind.call($call, Array.prototype.concat);
 var $spliceApply = bind.call($apply, Array.prototype.splice);
 var $replace = bind.call($call, String.prototype.replace);
@@ -1026,9 +1026,9 @@ module.exports = function hasSymbols() {
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/hasown@2.0.3/node_modules/hasown/index.js":
+/***/ "./node_modules/.pnpm/hasown@2.0.4/node_modules/hasown/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/.pnpm/hasown@2.0.3/node_modules/hasown/index.js ***!
+  !*** ./node_modules/.pnpm/hasown@2.0.4/node_modules/hasown/index.js ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
