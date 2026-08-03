@@ -1,4 +1,15 @@
-shamefullyHoist: true
+packages:
+  - "."
+  - "../AstraEditor/packages/scratch-vm"
+  - "../AstraEditor/packages/scratch-render"
+  - "../AstraEditor/packages/scratch-audio"
+
+# 注意：不能使用 shamefullyHoist。
+# workspace 包（如 scratch-render）的 devDependencies 会引入 webpack 5，
+# 提升到根 node_modules 会与 packager 的 webpack 4 解析冲突。
 blockExoticSubdeps: false
 allowBuilds:
   core-js: true
+  chromedriver: true
+  es5-ext: true
+  playwright-chromium: true

@@ -6,16 +6,27 @@ Converts Scratch projects into HTML files, zip archives, or executable programs 
 
 ## Development
 
+This project uses [pnpm workspaces](https://pnpm.io/workspaces) to link the `scratch-vm`, `scratch-render` and `scratch-audio` packages from the [AstraEditor](https://github.com/AstraEditor/AstraEditor) monorepo. The two repositories must be siblings on disk:
+
+```
+Project/
+    |- packager/
+    |- AstraEditor/
+        |- packages/scratch-vm/
+        |- packages/scratch-render/
+        |- packages/scratch-audio/
+```
+
 Install dependencies:
 
 ```
-npm ci
+pnpm install
 ```
 
 Start in development mode:
 
 ```
-npm start
+pnpm start
 ```
 
 Then visit http://localhost:8947. Manually refresh to see changes.
@@ -23,10 +34,26 @@ Then visit http://localhost:8947. Manually refresh to see changes.
 Packaged projects generated while in development mode should not be distributed. Instead, you should run a production build to significantly reduce file size of both the website and the packager.
 
 ```
-npm run build-prod
+pnpm run build-prod
 ```
 
 Output will be located in the `dist` folder.
+
+## Working with the AstraEditor packages
+
+The scratch-vm, scratch-render and scratch-audio dependencies are linked from the AstraEditor monorepo via pnpm workspaces instead of being installed from npm or GitHub. This is required because:
+
+ - AstraEditor does not publish these packages to npm.
+ - The GitHub branches only receive updates by commit and can be far behind the monorepo. An outdated scratch-vm is missing `runtime.getProjectMetadata()`, which makes packaged projects fail at runtime with `Failed to read file from VM`.
+
+The workspace setup is already committed to this repository; do not change it carelessly:
+
+ - `pnpm-workspace.yaml` lists exactly the three packages needed. Do NOT expand this to `../AstraEditor/packages/*`: the other packages pull in webpack 5 devDependencies which conflict with this project's webpack 4 build.
+ - `package.json` uses `workspace:*` for the three packages.
+ - `webpack.config.js` transpiles the `scratch-*` sources by their workspace path, and redirects the `webpack/lib/SingleEntryPlugin` request made by scratch-vm's `tw-load-script-as-plain-text.js` loader back to webpack 4 (see the comment in the file for details). This is required because pnpm links workspace devDependencies into `scratch-vm/node_modules`, so the loader would otherwise resolve webpack 5 and fail the webpack 4 compilation with `module property was removed from Dependency`.
+ - `shamefullyHoist` must stay disabled; hoisting the webpack 5 pulled in by workspace devDependencies into the root `node_modules` breaks the webpack 4 resolution (see the comment in `pnpm-workspace.yaml`).
+
+Note: running `pnpm install` inside the AstraEditor repo re-links the packages against AstraEditor's own node_modules (which use webpack 5). That is fine: packager's build always resolves webpack against its own copy, and the loader redirect in `webpack.config.js` is version-independent.
 
 The general layout of `src` is:
 
@@ -44,14 +71,16 @@ We strive to make the packager easy to fork, even for mods that aren't based on 
 
 ### Packages
 
-If you want to change the scratch-vm/scratch-render/scratch-audio/scratch-storage/etc. used, this is simple:
+If you want to change the scratch-vm/scratch-render/scratch-audio/scratch-storage/etc. used, there are two options:
 
- - `npm install` or `npm link` your package. The package name does not matter.
- - Update src/scaffolding/scratch-libraries.js to import the packages with the name you have. (some of our packages are prefixed with `@turbowarp/` while others are still just `scratch-vm` -- just make sure they match yours)
+1. Recommended for forks based on the AstraEditor monorepo: use a pnpm workspace exactly like this repository does. See "Working with the AstraEditor packages" above. The package name does not matter.
+2. Alternatively, `pnpm install` or `pnpm link` your package directly.
+
+Then update src/scaffolding/scratch-libraries.js to import the packages with the name you have. (some of our packages are prefixed with `@turbowarp/` while others are still just `scratch-vm` -- just make sure they match yours)
 
 Then just rebuild. You can even install a vanilla scratch-vm and all core functionality will still work (but optional features such as interpolation, high quality pen, stage size, etc. may not work)
 
-Note that npm is a very buggy piece of software and our dependency tree is very large. Occasionally you might get errors about missing dependencies, which should go away if you run `npm install`.
+Note that npm is a very buggy piece of software and our dependency tree is very large. Occasionally you might get errors about missing dependencies, which should go away if you run `pnpm install`.
 
 ### Deployment
 
@@ -84,7 +113,7 @@ The packager supports generating "standalone builds" that are single HTML files 
 To make a production standalone build locally:
 
 ```
-npm run build-standalone-prod
+pnpm run build-standalone-prod
 ```
 
 The build outputs to `dist/standalone.html`.
@@ -96,7 +125,7 @@ See [node-api-docs/README.md](node-api-docs/README.md) for Node.js API documenta
 To build the Node.js module locally:
 
 ```
-npm run build-node-prod
+pnpm run build-node-prod
 ```
 
 ## License

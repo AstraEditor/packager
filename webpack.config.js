@@ -9,6 +9,27 @@ console.warn = function (...args) {
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// scratch-vm 的 tw-load-script-as-plain-text.js loader 通过 Node require 解析
+// 'webpack/lib/SingleEntryPlugin'，会命中 scratch-vm/node_modules/webpack（webpack 5.106.2，
+// 由 pnpm workspace 按 devDependencies 链接），得到 webpack 5 的 EntryPlugin。把它挂到
+// packager 的 webpack 4 子编译器上时，webpack 4 会给 EntryDependency 赋值 module 属性，
+// 而 webpack 5 的 Dependency 已移除该属性并抛错。这里把该请求重定向到 packager 自己
+// 的 webpack 4 实现。
+const Module = require('module');
+const _origModuleLoad = Module._load;
+const webpack4SingleEntryPlugin = require('webpack/lib/SingleEntryPlugin');
+Module._load = function (request, parent, isMain) {
+  if (
+    request === 'webpack/lib/SingleEntryPlugin' &&
+    parent &&
+    typeof parent.filename === 'string' &&
+    parent.filename.includes('tw-load-script-as-plain-text.js')
+  ) {
+    return webpack4SingleEntryPlugin;
+  }
+  return _origModuleLoad.apply(this, arguments);
+};
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const AddBuildIDToOutputPlugin = require('./src/build/add-build-id-to-output-plugin');
@@ -66,7 +87,9 @@ const makeScaffolding = ({full}) => ({
         loader: 'babel-loader',
         include: [
           path.resolve(__dirname, 'src'),
-          /node_modules[\\/]scratch-[^\\/]+[\\/]src/
+          /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
+          // pnpm workspace symlink 展开后指向 ../AstraEditor/packages/* 的真实路径，不含 node_modules 前缀
+          /[\\/]scratch-(?:vm|audio|render)[^\\/]*[\\/]src/
         ],
         options: {
           babelrc: false,

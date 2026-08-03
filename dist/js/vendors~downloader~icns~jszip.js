@@ -389,7 +389,7 @@ process.umask = function() { return 0; };
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../process@0.11.10/node_modules/process/browser.js */ "./node_modules/.pnpm/process@0.11.10/node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../process@0.11.10/node_modules/process/browser.js */ "./node_modules/.pnpm/process@0.11.10/node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -464,7 +464,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js")))
 
 /***/ })
 

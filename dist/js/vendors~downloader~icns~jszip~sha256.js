@@ -1960,7 +1960,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js */ "./node_modules/.pnpm/webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -2076,7 +2076,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/webpack@4.47.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js":
+/***/ "./node_modules/.pnpm/webpack@4.47.0_supports-color@6.1.0_webpack-cli@4.10.0/node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
