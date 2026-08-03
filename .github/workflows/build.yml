@@ -17,15 +17,18 @@ jobs:
       uses: actions/setup-node@v6
       with:
         node-version: 24
-        cache: npm
+    - name: Install pnpm
+      run: corepack enable && corepack prepare pnpm@11.16.0 --activate
+    - name: Clone AstraEditor monorepo
+      run: git clone --depth 1 https://github.com/AstraEditor/AstraEditor.git ../AstraEditor
     - name: Install dependencies
-      run: npm install
+      run: pnpm install --no-frozen-lockfile
     - name: Build
-      run: npm run build
+      run: pnpm run build
     - name: Test
-      run: npm test
+      run: pnpm test
     - name: Build standalone
-      run: npm run build-standalone-prod
+      run: pnpm run build-standalone-prod
     - name: Upload standalone artifact
       uses: actions/upload-artifact@v6
       with:

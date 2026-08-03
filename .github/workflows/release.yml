@@ -20,15 +20,21 @@ jobs:
       with:
         node-version: 24
 
-    - run: npm install
+    - name: Install pnpm
+      run: corepack enable && corepack prepare pnpm@11.16.0 --activate
 
-    - run: npm test
+    - name: Clone AstraEditor monorepo
+      run: git clone --depth 1 https://github.com/AstraEditor/AstraEditor.git ../AstraEditor
+
+    - run: pnpm install --no-frozen-lockfile
+
+    - run: pnpm test
 
     - name: Build website
-      run: npm run build-prod
+      run: pnpm run build-prod
 
     - name: Build standalone
-      run: npm run build-standalone-prod
+      run: pnpm run build-standalone-prod
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2

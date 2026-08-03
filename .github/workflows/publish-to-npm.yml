@@ -17,6 +17,21 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
-      - run: npm install
-      - run: npm test
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@11.16.0 --activate
+      - name: Clone AstraEditor monorepo
+        run: git clone --depth 1 https://github.com/AstraEditor/AstraEditor.git ../AstraEditor
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm test
+      - name: Replace workspace:* dependencies for publish
+        run: |
+          node -e "
+            const fs = require('fs');
+            const p = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            const refs = { 'scratch-audio': '#develop', 'scratch-render': '#develop', 'scratch-vm': '#master' };
+            for (const [name, ref] of Object.entries(refs)) {
+              if (p.dependencies && p.dependencies[name] === 'workspace:*') p.dependencies[name] = 'github:AstraEditor/' + name + ref;
+            }
+            fs.writeFileSync('package.json', JSON.stringify(p, null, 2) + '\n');
+          "
       - run: npm publish
